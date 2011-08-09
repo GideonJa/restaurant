@@ -11,10 +11,14 @@
   <tr class="header">
    
     <th><%=link_to("Restaurant", {:action => 'sort', :sort_field => 'rest_name'}, 
-							:class => 'action show') %></th>
-    <th>City</th>
-	<th>Cuisine</th>
-	<th>Rating</th>
+							:class => 'action sort') %></th>
+    <th><%=link_to("city", {:action => 'sort', :sort_field => 'rest_city'}, 
+													:class => 'action sort') %></th>
+	<th><%=link_to("cuisine", {:action => 'sort', :sort_field => 'cuisine'}, 
+													:class => 'action sort') %></th>
+	<th><%=link_to("rating", {:action => 'sort', :sort_field => 'avg_rating'}, 
+													:class => 'action sort') %></th>
+
 	<th>Action</th>
   </tr>
 

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
 
    def initialize_sort
-    params.merge!( :sort_field => 'rest_name', :sort_dir => 'ASC' )
+    # params.merge!( :sort_field => 'rest_name', :sort_dir => 'ASC' )
+    # session[:prev_sort_field] = "none"
    end
 end

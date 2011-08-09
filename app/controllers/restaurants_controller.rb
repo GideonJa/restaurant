@@ -22,31 +22,27 @@ class RestaurantsController < ApplicationController
   end
 
   def list
-    
-    @restaurants =Restaurant.order("#{params[:sort_field]} #{params[:sort_dir]}")
-     
+      @restaurants =Restaurant.order("#{params[:sort_field]} #{session[:sort_dir]}") 
   end
+  
   def sort
-    puts "==========entering sort #{ params[:prev_sort_field]}  #{params[:sort_field]}"
-    if params[:prev_sort_field].nil? ||
-      params[:prev_sort_field] != params[:sort_field]
+      if session[:prev_sort_field].nil?  ||
+          session[:prev_sort_field] != params[:sort_field]
       then
-       puts "==========then #{ params[:prev_sort_field].nil?}  #{params[:sort_field]}"
-       params[:prev_sort_field] = params[:sort_field]
-        params[:sort_dir] = 'ASC'
-        puts "==========then after #{ params[:prev_sort_field].nil?}  #{params[:sort_field]}"
-      else 
-        puts "*********** im in ELSE"
-        switch_dir
+         session[:prev_sort_field] = params[:sort_field]
+         session[:sort_dir] = 'ASC'
+        else 
+          switch_dir
       end
-      
-    redirect_to(:action => 'list')
+  
+    @restaurants =Restaurant.order("#{params[:sort_field]} #{session[:sort_dir]}")
+    render ('list')
   end
   
   def switch_dir
-    if  params[:sort_dir] == 'ASC'
-      then params[:sort_dir] == 'DESC'
-      else params[:sort_dir] == 'ASC'
+    if  session[:sort_dir] == 'ASC'
+      then session[:sort_dir] = 'DESC'
+      else session[:sort_dir] = 'ASC'
     end
   end
   def show
