@@ -7,6 +7,13 @@
 
 <div> <%= pluralize(@restaurants.size, 'restaurant') %> found </div>
 
+
+
+<form action="search", method="GET">
+	Enter search criteria: <input type="text" name="user_search" /><br />
+<input type ="submit" name"commit" value="search restaurants">
+</form>	
+	
 <table class="listing" summary="Restaurant list">
   <tr class="header">
    

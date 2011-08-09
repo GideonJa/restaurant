@@ -6,6 +6,7 @@ NyuRest::Application.routes.draw do
   get "restaurants/new"
   get "restaurants/delete"
   post "restaurants/create"
+  get "restaurants/search"
  
 
   # The priority is based upon order of creation:

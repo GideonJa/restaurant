@@ -22,10 +22,15 @@ class RestaurantsController < ApplicationController
   end
 
   def list
-      @restaurants =Restaurant.order("#{params[:sort_field]} #{session[:sort_dir]}") 
+    
+        puts "THIS IS GREAT LIST-------#{session[:prev_sort_field]}-----" 
+        puts "THIS IS GREAT im NIL-------#{session[:prev_sort_field]}-----" if session[:prev_sort_field].nil?
+         puts "THIS IS GREAT im empty-------#{session[:prev_sort_field]}-----" if session[:prev_sort_field] ==""
+      @restaurants =Restaurant.order("rest_name ASC") 
   end
   
   def sort
+        puts "THIS IS GREAT sort -------#{session[:prev_sort_field]}-----" 
       if session[:prev_sort_field].nil?  ||
           session[:prev_sort_field] != params[:sort_field]
       then
@@ -73,6 +78,11 @@ class RestaurantsController < ApplicationController
        flash[:notice] = "Restaurant deleted successfully"
      end
       redirect_to(:action => 'list')
+  end
+  def search
+  @restaurants=Restaurant.where(:rest_name => params[:user_search])
+  render ('list')
+  
   end
 
 end
