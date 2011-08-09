@@ -1,5 +1,7 @@
 class RestaurantsController < ApplicationController
     layout 'admin'
+    before_filter :initialize_sort
+    
   def index
     list
      render ('list')
@@ -20,9 +22,33 @@ class RestaurantsController < ApplicationController
   end
 
   def list
-    @restaurants =Restaurant.order("rest_name ASC")
+    
+    @restaurants =Restaurant.order("#{params[:sort_field]} #{params[:sort_dir]}")
+     
+  end
+  def sort
+    puts "==========entering sort #{ params[:prev_sort_field]}  #{params[:sort_field]}"
+    if params[:prev_sort_field].nil? ||
+      params[:prev_sort_field] != params[:sort_field]
+      then
+       puts "==========then #{ params[:prev_sort_field].nil?}  #{params[:sort_field]}"
+       params[:prev_sort_field] = params[:sort_field]
+        params[:sort_dir] = 'ASC'
+        puts "==========then after #{ params[:prev_sort_field].nil?}  #{params[:sort_field]}"
+      else 
+        puts "*********** im in ELSE"
+        switch_dir
+      end
+      
+    redirect_to(:action => 'list')
   end
   
+  def switch_dir
+    if  params[:sort_dir] == 'ASC'
+      then params[:sort_dir] == 'DESC'
+      else params[:sort_dir] == 'ASC'
+    end
+  end
   def show
      @restaurant = Restaurant.find(params[:id])
   end
