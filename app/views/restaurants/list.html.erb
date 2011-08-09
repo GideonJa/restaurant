@@ -1,0 +1,41 @@
+<%@page_title ="Listing Restaurants"%>
+ 
+</div class="restaurant list">
+<h2>Restaurants List</h2>
+
+<%= link_to("Add new Restaurant", {:action=>'new'}, :class => 'action new') %>
+
+<div> <%= pluralize(@restaurants.size, 'restaurant') %> found </div>
+
+<table class="listing" summary="Restaurant list">
+  <tr class="header">
+   
+    <th>Restaurant</th>
+    <th>City</th>
+	<th>Cuisine</th>
+	<th>Rating</th>
+	<th>Action</th>
+  </tr>
+
+    <% @restaurants.each do |restaurant|%>
+  <tr class="<%= cycle('odd', 'even') %>">
+		
+    
+    	<td class= 'center'><%=restaurant.rest_name %></td>
+		<td class="center"><%=restaurant.rest_city %></td>
+		<td class="center"><%=restaurant.cuisine %></td>
+		<td class="center"><%=restaurant.avg_rating %></td>
+		
+		
+		<td class="actions">
+			<%=link_to("Show", {:action => 'show', :id => restaurant.id}, 
+								:class => 'action show') %> 
+			<%=link_to("Edit", {:action=> 'edit', :id =>restaurant.id}, 
+			                    :class => 'action edit') %>
+			<%=link_to("Delete",{:action=> 'delete', :id =>restaurant.id}, 
+								 :class => 'action delete') %></td>
+   </tr>
+	<%end%>
+
+</table>
+</div>

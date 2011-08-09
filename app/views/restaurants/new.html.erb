@@ -1,0 +1,20 @@
+<%@page_title ="New Restaurant"%>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="restaurant new">
+<h2>New  Restaurant  </h2>
+
+
+
+<%= form_for(:restaurant, :url=> {:action => 'create'}) do |f| %>
+	
+	
+	<%= render(:partial =>"form", :locals => {:f => f}) %>
+
+	<div class="form-buttons">
+		<%= submit_tag("Create Restaurant") %>
+	</div>
+
+<%end%>
+
+
+</div>

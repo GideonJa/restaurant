@@ -1,0 +1,33 @@
+<%@page_title ="Show Restaurant"%>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="restaurant show">
+	<h2>Showing Restaurant <%=@restaurant.id%> </h2>
+
+
+	<table summary="Subject detail view">
+	   <tr>
+	     <th>Name</th>
+	     <td><%= @restaurant.rest_name %></td>
+	   </tr>
+	  <tr>
+	    <th>City</th>
+	    <td><%=@restaurant.rest_city%></td>
+	  </tr>
+	  <tr>
+		<th>Cuisine</th>
+	    <td><%=@restaurant.cuisine%></td>
+	  </tr>
+	  <tr>
+	     <th>Rating</th>
+	     <td><%= @restaurant.avg_rating %></td>
+	   </tr>
+	  <tr>
+	     <th>Created</th>
+	     <td><%= @restaurant.created_at %></td>
+	   </tr>
+	   <tr>
+	     <th>Updated</th>
+	     <td><%= @restaurant.updated_at %></td>
+	   </tr>
+	</table>
+	</div>
