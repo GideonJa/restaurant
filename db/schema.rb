@@ -10,13 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809125622) do
+ActiveRecord::Schema.define(:version => 20110810151118) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "rest_name",  :limit => 25
     t.string   "rest_city",  :limit => 50
     t.string   "cuisine",                  :default => "American", :null => false
     t.integer  "avg_rating",               :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviewers", :force => true do |t|
+    t.string   "rev_fname",         :limit => 25
+    t.string   "rev_lname",         :limit => 25
+    t.integer  "rev_avg_rating",                  :default => 0
+    t.integer  "rev_num_of_rating",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

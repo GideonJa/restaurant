@@ -80,7 +80,7 @@ class RestaurantsController < ApplicationController
       redirect_to(:action => 'list')
   end
   def search
-  @restaurants=Restaurant.where(:rest_name => params[:user_search])
+  @restaurants=Restaurant.search(params[:user_search])
   render ('list')
   
   end

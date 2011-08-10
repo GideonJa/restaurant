@@ -5,14 +5,13 @@
 
 <%= link_to("Add new Restaurant", {:action=>'new'}, :class => 'action new') %>
 
-<div> <%= pluralize(@restaurants.size, 'restaurant') %> found </div>
 
-
-
-<form action="search", method="GET">
-	Enter search criteria: <input type="text" name="user_search" /><br />
+<form action="restaurants/search", method="GET">
+	Enter search value: <input type="text" name="user_search" /><br />
 <input type ="submit" name"commit" value="search restaurants">
-</form>	
+</form><br />	
+
+<div> <%= pluralize(@restaurants.size, 'restaurant') %> found </div>
 	
 <table class="listing" summary="Restaurant list">
   <tr class="header">

@@ -1,12 +1,34 @@
 NyuRest::Application.routes.draw do
  
+  resources :restaurants
+  resources :reviewers
+  
 
-  root :to => 'restaurants#index'
-  get "restaurants/list"
-  get "restaurants/new"
-  get "restaurants/delete"
-  post "restaurants/create"
-  get "restaurants/search"
+  root :to => "restaurants#list"
+  
+  # get "restaurants/list"
+  #   get "restaurants/new"
+  #   get "restaurants/delete"
+  #   post "restaurants/create"
+  #   get "restaurants/edit/id"
+  #   get "restaurants/update/id"
+      get "restaurants/sort"
+  #   get "restaurants/edit"
+  #   get "restaurants/show"
+    match 'restaurants/search' => 'restaurants#search'
+    # 
+    # get "reviewers/list"
+    # get "reviewers/new"
+    # get "reviewers/delete"
+    # post "reviewers/create"
+    # get "reviewers/edit/id"
+      get "reviewers/sort"
+    # get "reviewers/edit"
+    # get "reviewers/show"
+    match 'reviewers/search' => 'restaurants#search'
+  
+  
+  
  
 
   # The priority is based upon order of creation:
@@ -64,5 +86,5 @@ NyuRest::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-   match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id(.:format)))'
 end
