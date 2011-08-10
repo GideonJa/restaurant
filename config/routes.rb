@@ -8,28 +8,29 @@ NyuRest::Application.routes.draw do
   
       get "restaurants/list"
       get "restaurants/new"
-      get "restaurants/delete"
       post "restaurants/create"
       get "restaurants/edit/:id",  :controller => :restaurants, :action => :edit
       post "restaurants/update/:id", :controller => :restaurants, :action => :update 
       get "restaurants/sort"
-      get "restaurants/edit"
       get "restaurants/show"
-      #match 'restaurants/search' => 'restaurants#search'
       get 'restaurants/search' 
+      get "restaurants/delete/:id",  :controller => :restaurants, :action => :delete
+      post "restaurants/destroy/:id", :controller => :restaurants, :action => :destroy
       
       
       
-    # 
-    # get "reviewers/list"
-    # get "reviewers/new"
-    # get "reviewers/delete"
-    # post "reviewers/create"
-    # get "reviewers/edit/id"
+      get "reviewers/list"
+      get "reviewers/new"
+      post "reviewers/create"
+      get "reviewers/edit/:id",  :controller => :reviewers, :action => :edit
+      post "reviewers/update/:id", :controller => :reviewers, :action => :update 
       get "reviewers/sort"
-    # get "reviewers/edit"
-    # get "reviewers/show"
-    match 'reviewers/search' => 'reviewers#search'
+      get "reviewers/show"
+      get 'reviewers/search' 
+      get "reviewers/delete/:id",  :controller => :reviewers, :action => :delete
+      post "reviewers/destroy/:id", :controller => :reviewers, :action => :destroy
+   
+   
   
   
   

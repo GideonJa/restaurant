@@ -4,11 +4,30 @@
 	<h2>Showing Reviewer <%=@reviewer.id%> </h2>
 
 
-	<%= form_for(:reviewer) do |f| %>
-
-		<%= render(:partial =>"form", :locals => {:f => f}) %>
-
-		
-
-	<%end%>
+	<table summary="Subject detail view">
+	   <tr>
+	     <th>Name</th>
+	     <td><%= @reviewer.rev_fname %></td>
+	   </tr>
+	  <tr>
+	    <th>City</th>
+	    <td><%=@reviewer.rev_lname%></td>
+	  </tr>
+	  <tr>
+		<th>Cuisine</th>
+	    <td><%=@reviewer.rev_num_of_rating%></td>
+	  </tr>
+	  <tr>
+	     <th>Rating</th>
+	     <td><%= @reviewer.rev_avg_rating %></td>
+	   </tr>
+	  <tr>
+	     <th>Created</th>
+	     <td><%= @reviewer.created_at %></td>
+	   </tr>
+	   <tr>
+	     <th>Updated</th>
+	     <td><%= @reviewer.updated_at %></td>
+	   </tr>
+	</table>
 	</div>
