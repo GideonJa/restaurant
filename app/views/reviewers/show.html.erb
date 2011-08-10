@@ -1,0 +1,14 @@
+<%@page_title ="Show Reviewer"%>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="reviewer show">
+	<h2>Showing Reviewer <%=@reviewer.id%> </h2>
+
+
+	<%= form_for(:reviewer) do |f| %>
+
+		<%= render(:partial =>"form", :locals => {:f => f}) %>
+
+		
+
+	<%end%>
+	</div>

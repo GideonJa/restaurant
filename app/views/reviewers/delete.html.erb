@@ -1,0 +1,16 @@
+<%@page_title ="Delete Reviewer #{@reviewer.rest_name}"%>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="reviewer delete">
+	<h2>Showing Reviewer <%=@reviewer.id%> </h2>
+
+
+<%= form_for(:reviewer, :url=> {:action => 'destroy', :id => params[:id]}) do |f| %>
+
+	<%= render(:partial =>"form", :locals => {:f => f}) %>
+
+	<div class="form-buttons">
+	<%= submit_tag("Delete Reviewer")%>    <%=submit_tag("Cancel")%>
+	</div>
+	
+<%end%>	
+	</div>

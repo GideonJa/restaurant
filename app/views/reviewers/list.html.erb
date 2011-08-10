@@ -1,0 +1,52 @@
+<%@page_title ="Listing Reviewers"%>
+ 
+</div class="reviewer list">
+<h2>Reviewers List</h2>
+
+<%= link_to("Add new Reviewer", {:action=>'new'}, :class => 'action new') %>
+
+
+<form action="/reviewers/search", method="GET">
+	Enter search value: <input type="text" name="user_search" /><br />
+<input type ="submit" name"commit" value="search reviewers">
+</form><br />	
+
+<div> <%= pluralize(@reviewers.size, 'reviewer') %> found </div>
+	
+<table class="listing" summary="Reviewer list">
+  <tr class="header">
+   
+    <th><%=link_to("First Name", {:action => 'sort', :sort_field => 'rev_fname'}, 
+							:class => 'action sort') %></th>
+    <th><%=link_to("Last Name", {:action => 'sort', :sort_field => 'rev_lname'}, 
+													:class => 'action sort') %></th>
+	<th><%=link_to("Num of ratings", {:action => 'sort', :sort_field => 'rev_num_of_rating'}, 
+													:class => 'action sort') %></th>
+	<th><%=link_to("Avg. rating given", {:action => 'sort', :sort_field => 'rev_avg_rating'}, 
+													:class => 'action sort') %></th>
+
+	<th>Action</th>
+  </tr>
+
+    <% @reviewers.each do |reviewer|%>
+  <tr class="<%= cycle('odd', 'even') %>">
+		
+    
+    	<td class= 'center'><%=reviewer.rev_fname %></td>
+		<td class="center"><%=reviewer.rev_lname %></td>
+		<td class="center"><%=reviewer.rev_num_of_rating %></td>
+		<td class="center"><%=reviewer.rev_avg_rating %></td>
+		
+		
+		<td class="actions">
+			<%=link_to("Show", {:action => 'show', :id => reviewer.id}, 
+								:class => 'action show') %> 
+			<%=link_to("Edit", {:action=> 'edit', :id =>reviewer.id}, 
+			                    :class => 'action edit') %>
+			<%=link_to("Delete",{:action=> 'delete', :id =>reviewer.id}, 
+								 :class => 'action delete') %></td>
+   </tr>
+	<%end%>
+
+</table>
+</div>
