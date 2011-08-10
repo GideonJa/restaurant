@@ -4,34 +4,12 @@
 	<h2>Showing Restaurant <%=@restaurant.id%> </h2>
 
 
-<%= form_for(:restaurant, :url=> {:action => 'destroy', :id => params[:id]}) do |f| %>
+<%= form_for(:restaurant, :url=> {:action => 'destroy', :id => params[:id], :method=>'POST'}) do |f| %>
 
-	<table summary="Subject detail view">
-	   <tr>
-	     <th>Name</th>
-	     <td><%= @restaurant.rest_name %></td>
-	   </tr>
-	  <tr>
-	    <th>City</th>
-	    <td><%=@restaurant.rest_city%></td>
-	  </tr>
-	  <tr>
-		<th>Cuisine</th>
-	    <td><%=@restaurant.cuisine%></td>
-	  </tr>
-	  <tr>
-	     <th>Rating</th>
-	     <td><%= @restaurant.avg_rating %></td>
-	   </tr>
-	  <tr>
-	     <th>Created</th>
-	     <td><%= @restaurant.created_at %></td>
-	   </tr>
-	   <tr>
-	     <th>Updated</th>
-	     <td><%= @restaurant.updated_at %></td>
-	   </tr>
-	</table>
+
+
+	<%= render(:partial =>"form", :locals => {:f => f}) %>
+
 	<div class="form-buttons">
 	<%= submit_tag("Delete Restaurant")%>    <%=submit_tag("Cancel")%>
 	</div>

@@ -1,0 +1,50 @@
+<%@page_title ="Listing Reviews"%>
+ 
+</div class="review list">
+<h2>Reviews List</h2>
+
+<%= link_to("Add new Review", {:action=>'new'}, :class => 'action new') %>
+
+
+<form action="/reviews/search", method="GET">
+	Enter search value: <input type="text" name="user_search" /><br />
+<input type ="submit" name"commit" value="search reviews">
+</form><br />	
+
+<div> <%= pluralize(@reviews.size, 'review') %> found </div>
+	
+<table class="listing" summary="Review list">
+  <tr class="header">
+   
+   
+	<th><%=link_to("Review Id", {:action => 'sort', :sort_field => 'id'}, 
+							:class => 'action sort') %></th>
+ <th><%=link_to("Review", {:action => 'sort', :sort_field => 'score'}, 
+							:class => 'action sort') %></th>
+    <th><%=link_to("city", {:action => 'sort', :sort_field => 'rev_summary'}, 
+							:class => 'action sort') %></th>
+	
+	<th>Action</th>
+  </tr>
+
+    <% @reviews.each do |review|%>
+  <tr class="<%= cycle('odd', 'even') %>">
+		
+    	<td class= 'center'><%=review.id %></td>
+    	<td class= 'center'><%=review.score %></td>
+		<td class="center"><%=review.rev_summary %></td>
+	
+		
+		
+		<td class="actions">
+			<%=link_to("Show", {:action => 'show', :id => review.id}, 
+								:class => 'action show') %> 
+			<%=link_to("Edit", {:action=> 'edit', :id =>review.id}, 
+			                    :class => 'action edit') %>
+			<%=link_to("Delete",{:action=> 'delete', :id =>review.id}, 
+								 :class => 'action delete') %></td>
+   </tr>
+	<%end%>
+
+</table>
+</div>

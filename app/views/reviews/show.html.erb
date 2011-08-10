@@ -1,0 +1,29 @@
+<%@page_title ="Show Review"%>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="review show">
+	<h2>Showing Review <%=@review.id%> </h2>
+
+
+	<table summary="Review detail view">
+	   <tr>
+	     <th>Review ID</th>
+	     <td><%= @review.id %></td>
+	   </tr>
+	  <tr>
+	    <th>Score</th>
+	    <td><%=@review.score%></td>
+	  </tr>
+	  <tr>
+		<th>Summary</th>
+	    <td><%=@review.rev_summary%></td>
+	  </tr>
+	   <tr>
+	     <th>Created</th>
+	     <td><%= @review.created_at %></td>
+	   </tr>
+	   <tr>
+	     <th>Updated</th>
+	     <td><%= @review.updated_at %></td>
+	   </tr>
+	</table>
+	</div>

@@ -1,2 +1,5 @@
 class Review < ActiveRecord::Base
-end
+ 
+    scope :search, lambda{|query| where(["score >= ?", "#{query}".to_i])}
+  end
+ 

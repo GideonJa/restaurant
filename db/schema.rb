@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810151118) do
+ActiveRecord::Schema.define(:version => 20110810200650) do
 
   create_table "restaurants", :force => true do |t|
     t.string   "rest_name",  :limit => 25
@@ -29,5 +29,16 @@ ActiveRecord::Schema.define(:version => 20110810151118) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "reviewer_id"
+    t.integer  "restaurant_id"
+    t.integer  "score"
+    t.string   "rev_summary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["reviewer_id", "restaurant_id"], :name => "index_reviews_on_reviewer_id_and_restaurant_id"
 
 end
