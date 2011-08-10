@@ -6,7 +6,7 @@
 <%= link_to("Add new Restaurant", {:action=>'new'}, :class => 'action new') %>
 
 
-<form action="restaurants/search", method="GET">
+<form action="/restaurants/search", method="GET">
 	Enter search value: <input type="text" name="user_search" /><br />
 <input type ="submit" name"commit" value="search restaurants">
 </form><br />	

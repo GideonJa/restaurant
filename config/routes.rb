@@ -1,20 +1,20 @@
 NyuRest::Application.routes.draw do
  
-  resources :restaurants
-  resources :reviewers
+  # resources :restaurants
+  #  resources :reviewers
   
 
   root :to => "restaurants#list"
   
-  # get "restaurants/list"
-  #   get "restaurants/new"
-  #   get "restaurants/delete"
-  #   post "restaurants/create"
-  #   get "restaurants/edit/id"
-  #   get "restaurants/update/id"
+      get "restaurants/list"
+      get "restaurants/new"
+      get "restaurants/delete"
+      post "restaurants/create"
+      get "restaurants/edit/:id",  :controller => :restaurants, :action => :edit
+      get "restaurants/update/:id", :controller => :restaurants, :action => :update 
       get "restaurants/sort"
-  #   get "restaurants/edit"
-  #   get "restaurants/show"
+      get "restaurants/edit"
+      get "restaurants/show"
     match 'restaurants/search' => 'restaurants#search'
     # 
     # get "reviewers/list"
@@ -25,7 +25,7 @@ NyuRest::Application.routes.draw do
       get "reviewers/sort"
     # get "reviewers/edit"
     # get "reviewers/show"
-    match 'reviewers/search' => 'restaurants#search'
+    match 'reviewers/search' => 'reviewers#search'
   
   
   
