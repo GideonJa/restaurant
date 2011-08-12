@@ -67,13 +67,17 @@ class RestaurantsController < ApplicationController
      @restaurant = Restaurant.find(params[:id])
   end
   def destroy
-    if params[:commit] == "Delete Restaurant"
-      then
-       Restaurant.find(params[:id]).destroy
-       flash[:notice] = "Restaurant deleted successfully"
-     end
-      redirect_to(:action => 'list')
+     @rev_num = Restaurant.find(params[:id]).reviews.size
+    if params[:commit] == "Delete Restaurant" && @rev_num == 0
+      then 
+        Restaurant.find(params[:id]).destroy
+        flash[:notice] = "Restaurant deleted successfully"
+        elsif params[:commit] == "Delete Restaurant"
+              then flash[:error] = "Restaurant can NOT be deleted. Please delete the coresponding #{@rev_num} reviews first"
+    end
+    redirect_to(:action => 'list')  
   end
+  
   def search
   @restaurants=Restaurant.search(params[:user_search])
   render ('list')

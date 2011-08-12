@@ -83,8 +83,10 @@ class ReviewsController < ApplicationController
 
   def delete
      @review = Review.find(params[:id])
+      @restaurants = Restaurant.order('rest_name ASC')
   end
   def destroy
+    @review = Review.find(params[:id])
     if params[:commit] == "Delete Review"
       then
        Review.find(params[:id]).destroy

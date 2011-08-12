@@ -17,6 +17,11 @@
 		<%= flash[:notice]%>
 		</div>	
 	<%end%>
+	<% if !flash[:error].blank?%>
+		<div class="error">
+		<%= flash[:error]%>
+		</div>	
+	<%end%>
 
 	<div id="content">
 		<%= yield %>
