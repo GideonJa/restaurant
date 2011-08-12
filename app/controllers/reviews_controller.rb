@@ -11,17 +11,11 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new(:restaurant_id => @curr_restaurant.id)
     @restaurants = Restaurant.order('rest_name ASC')
-    puts "============im after new review"
-    puts  @review.inspect
   end
 
   def create
       
     @review = Review.new(params[:review])
-    puts "============im before the save create"
-    puts  @review.inspect
-    puts "here are the PARAMS" + params[:review].inspect
-    
     if @review.save
       flash[:notice] = "New review was added succesfully"
       redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
@@ -31,16 +25,15 @@ class ReviewsController < ApplicationController
   end
 
   def list
-    puts "============im in LIST before action"
-        puts :restaurant_id.inspect
-    puts  @curr_restaurant.id.inspect
+     if @curr_restaurant
+      then @reviews =Review.where(:restaurant_id => @curr_restaurant.id)
+      else  @reviews =Review.all
+     end
+    end
     
-      @reviews =Review.where(:restaurant_id => @curr_restaurant.id)
-      puts "im in LIST"
-      puts @reviews.inspect
-      puts :restaurant_id.inspect
-      puts  @curr_restaurant.id.inspect
-  end
+    def listall
+        @reviews =Review.order("id ASC")
+      end
 
   def sort
       if session[:prev_sort_field].nil?  ||
@@ -53,7 +46,10 @@ class ReviewsController < ApplicationController
       end
 
     @reviews =Review.order("#{params[:sort_field]} #{session[:sort_dir]}")
-    render ('list')
+  if @curr_restaurant
+     then render ('list')
+    else render ('listall')
+    end
   end
 
   def switch_dir
@@ -69,6 +65,14 @@ class ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
    @restaurants = Restaurant.order('rest_name ASC')
+   if !@curr_restaurant
+     then render ('edit_orphan')
+   end
+  end
+  
+  def edit_orphan
+    @review = Review.find(params[:id])
+    @restaurants = Restaurant.order('rest_name ASC')
   end
 
   def update
@@ -95,9 +99,14 @@ class ReviewsController < ApplicationController
       redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
   end
   def search
-  @reviews=Review.where(:restaurant_id => @curr_restaurant.id).search(params[:user_search])
-  render ('list')
-
+    if @curr_restaurant
+       then 
+        @reviews=Review.where(:restaurant_id => @curr_restaurant.id).search(params[:user_search])
+        render ('list')
+       else 
+         @reviews=Review.search(params[:user_search])
+           render ('listall')
+    end
   end
 end
 private

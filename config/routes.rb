@@ -32,6 +32,7 @@ NyuRest::Application.routes.draw do
       
       
       get "reviews/list"
+      get "reviews/listall"
       get "reviews/new"
       post "reviews/create"
       get "reviews/edit/:id",  :controller => :reviews, :action => :edit
@@ -39,6 +40,7 @@ NyuRest::Application.routes.draw do
       get "reviews/sort"
       get "reviews/show"
       get 'reviews/search/:restaurant_id', :controller => :reviews, :action => :search  
+      get 'reviews/search'
       get "reviews/delete/:id",  :controller => :reviews, :action => :delete
       post "reviews/destroy/:id", :controller => :reviews, :action => :destroy
     
