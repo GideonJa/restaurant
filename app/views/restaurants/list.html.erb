@@ -39,6 +39,8 @@
 		
 		
 		<td class="actions">
+			<%=link_to("Reviews", {:action => 'Reviews', :controller => 'reviews', :action =>'list', :restaurant_id => restaurant.id}, 
+									:class => 'action show') %>
 			<%=link_to("Show", {:action => 'show', :id => restaurant.id}, 
 								:class => 'action show') %> 
 			<%=link_to("Edit", {:action=> 'edit', :id =>restaurant.id}, 

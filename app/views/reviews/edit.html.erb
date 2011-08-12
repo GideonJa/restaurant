@@ -1,11 +1,11 @@
 <%@page_title ="Edit Review  #{@review.id}" %>
-<%= link_to(" << Back to list", {:action => "list"}) %>
+<%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %>
 <div class="review edit">
 <h2>Edit Review <%=@review.id %> </h2>
 
 
 
-<%= form_for(:review, :url=> {:action => 'update', :id => params[:id]}) do |f| %>
+<%= form_for(:review, :url=> {:action => 'update', :id => params[:id], :restaurant_id => @curr_restaurant.id}) do |f| %>
 	
 	
 	<%= render(:partial =>"form", :locals => {:f => f}) %>

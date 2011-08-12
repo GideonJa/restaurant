@@ -1,7 +1,11 @@
 <table summary="Review form fields">
 	  
 	<tr>
-	    <th>Score</th>
+	    <th><%= f.label(:restaurant_id, "Restaurant") %></th>
+	    <td><%= f.select(:restaurant_id, @restaurants.collect {|s| [s.rest_name, s.id]}) %></td>
+	  </tr>
+	<tr>
+	    <th><%= f.label(:score) %></th>
 	    <td><%= f.text_field(:score ) %></td>
 	  </tr>
 	  <tr>

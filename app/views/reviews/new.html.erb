@@ -1,11 +1,11 @@
 <%@page_title ="New Review"%>
-<%= link_to(" << Back to list", {:action => "list"}) %>
+<%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %>
 <div class="review new">
 <h2>New  Review  </h2>
 
 
 
-<%= form_for(:review, :url=> {:action => 'create'}) do |f| %>
+<%= form_for(:review, :url=> {:action => 'create', :restaurant_id => @curr_restaurant.id}) do |f| %>
 	
 	
 	<%= render(:partial =>"form", :locals => {:f => f}) %>

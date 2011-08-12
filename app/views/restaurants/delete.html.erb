@@ -1,5 +1,5 @@
 <%@page_title ="Delete Restaurant #{@restaurant.rest_name}"%>
-<%= link_to(" << Back to list", {:action => "list"}) %>
+<%= link_to(" << Back to list", {:action => "list", :class => 'back-link'}) %>
 <div class="restaurant delete">
 	<h2>Showing Restaurant <%=@restaurant.id%> </h2>
 

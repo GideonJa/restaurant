@@ -1,17 +1,18 @@
 <%@page_title ="Listing Reviews"%>
+<%= link_to("<< Back to Restaurants List", {:controller => "restaurants", :action => 'list'}, :class => 'back-link') %>
  
 </div class="review list">
 <h2>Reviews List</h2>
 
-<%= link_to("Add new Review", {:action=>'new'}, :class => 'action new') %>
+<%= link_to("Add new Review", {:action=>'new', :restaurant_id => @curr_restaurant.id}, :class => 'action new') %>
 
 
-<form action="/reviews/search", method="GET">
-	Enter search value: <input type="text" name="user_search" /><br />
-<input type ="submit" name"commit" value="search reviews">
+<form action="/reviews/search/<%=@curr_restaurant.id%>", method="GET", id="<%=@curr_restaurant.id%>"  >
+	Enter search value: <input type="text" name="user_search", id="<%=@curr_restaurant.id%>"  /><br />
+<input type ="submit" name="commit" value="search reviews">
 </form><br />	
 
-<div> <%= pluralize(@reviews.size, 'review') %> found </div>
+<div> <%= pluralize(@reviews.size, 'review') %> found for Restaurant <%= @curr_restaurant.rest_name %></div>
 	
 <table class="listing" summary="Review list">
   <tr class="header">
@@ -37,11 +38,11 @@
 		
 		
 		<td class="actions">
-			<%=link_to("Show", {:action => 'show', :id => review.id}, 
+			<%=link_to("Show", {:action => 'show', :id => review.id, :restaurant_id => @curr_restaurant.id}, 
 								:class => 'action show') %> 
-			<%=link_to("Edit", {:action=> 'edit', :id =>review.id}, 
+			<%=link_to("Edit", {:action=> 'edit', :id =>review.id, :restaurant_id => @curr_restaurant.id}, 
 			                    :class => 'action edit') %>
-			<%=link_to("Delete",{:action=> 'delete', :id =>review.id}, 
+			<%=link_to("Delete",{:action=> 'delete', :id =>review.id, :restaurant_id => @curr_restaurant.id}, 
 								 :class => 'action delete') %></td>
    </tr>
 	<%end%>
