@@ -22,15 +22,10 @@ class RestaurantsController < ApplicationController
   end
 
   def list
-    
-        puts "THIS IS GREAT LIST-------#{session[:prev_sort_field]}-----" 
-        puts "THIS IS GREAT im NIL-------#{session[:prev_sort_field]}-----" if session[:prev_sort_field].nil?
-         puts "THIS IS GREAT im empty-------#{session[:prev_sort_field]}-----" if session[:prev_sort_field] ==""
       @restaurants =Restaurant.order("rest_name ASC") 
   end
   
   def sort
-        puts "THIS IS GREAT sort -------#{session[:prev_sort_field]}-----" 
       if session[:prev_sort_field].nil?  ||
           session[:prev_sort_field] != params[:sort_field]
       then

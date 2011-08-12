@@ -72,9 +72,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-     puts "**********    im in UPDATE before action"
-          puts :restaurant_id.inspect
-      puts  @curr_restaurant.id.inspect
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
        flash[:notice] = "Review #{@review.id} was updates succesfully"
@@ -104,11 +101,7 @@ end
 private
 
 def find_restaurant
-   puts "============im in find restaurant"
-        puts params.inspect
-        puts params[:restaurant_id].inspect
    if params[:restaurant_id]
      @curr_restaurant = Restaurant.find_by_id(params[:restaurant_id])
    end
-    puts  @curr_restaurant.inspect
 end
