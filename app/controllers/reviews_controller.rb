@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
 
     layout 'admin'
     before_filter :find_restaurant
+   
+    
 
   def index
     list
@@ -18,6 +20,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(params[:review])
     if @review.save
       flash[:notice] = "New review was added succesfully"
+      update_rest_avg_rating(params[:restaurant_id])
       redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
     else
       render ("new")
@@ -79,6 +82,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
        flash[:notice] = "Review #{@review.id} was updates succesfully"
+       update_rest_avg_rating(params[:restaurant_id])
         redirect_to(:action => 'show', :id => @review.id, :restaurant_id => @review.restaurant_id)
       else
          redirect_to(:action => 'edit', :id => @review.id, :restaurant_id => @review.restaurant_id)
@@ -94,6 +98,7 @@ class ReviewsController < ApplicationController
     if params[:commit] == "Delete Review"
       then
        Review.find(params[:id]).destroy
+       update_rest_avg_rating(params[:restaurant_id])
        flash[:notice] = "Review deleted successfully"
      end
       redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
@@ -114,5 +119,18 @@ private
 def find_restaurant
    if params[:restaurant_id]
      @curr_restaurant = Restaurant.find_by_id(params[:restaurant_id])
+     @rest_avg_rating =  @curr_restaurant.avg_rating
    end
 end
+
+def update_rest_avg_rating(rest_id)
+  @reviews=Review.where(:restaurant_id => rest_id)
+  num =  @reviews.length
+  if num > 0
+    then
+    sum = @reviews.inject(0) {|memo, n| memo +  n.score}
+    @avg_rating = sum.to_f/num 
+    @curr_restaurant.update_attributes(:avg_rating => @avg_rating.round)
+  end
+end
+
