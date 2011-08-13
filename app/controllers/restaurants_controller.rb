@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+    include ActionView::Helpers::TextHelper
     layout 'admin'
     before_filter :initialize_sort
     
@@ -73,7 +74,10 @@ class RestaurantsController < ApplicationController
         Restaurant.find(params[:id]).destroy
         flash[:notice] = "Restaurant deleted successfully"
         elsif params[:commit] == "Delete Restaurant"
-              then flash[:error] = "Restaurant can NOT be deleted. Please delete the coresponding #{@rev_num} reviews first"
+              then flash[:error] = 
+              "Restaurant can NOT be deleted." +  
+              "Please delete the coresponding "+
+               pluralize(@rev_num, 'review') + " first."
     end
     redirect_to(:action => 'list')  
   end
