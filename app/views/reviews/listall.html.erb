@@ -1,0 +1,44 @@
+<%@page_title ="Listing ALL Reviews"%>
+<%= link_to("<< Back to Restaurants List", {:controller => "restaurants", :action => 'list'}, :class => 'back-link') %>
+ 
+</div class="review list">
+<h2>List of ALL Reviews</h2>
+
+
+<form action="/reviews/search", method="GET">
+	Enter search value: <input type="text" name="user_search"><br />
+<input type ="submit" name="commit" value="search reviews">
+</form><br />	
+<div> <%= pluralize(@reviews.size, 'review') %> found</div>
+	
+<table class="listing" summary="Review list">
+  <tr class="header">
+	<th><%=link_to("Review Id", {:action => 'sort', :sort_field => 'id'}, 
+							:class => 'action sort') %></th>
+	<th><%=link_to("Rate", {:action => 'sort', :sort_field => 'score'}, 
+							:class => 'action sort') %></th>
+    <th><%=link_to("Review", {:action => 'sort', :sort_field => 'rev_summary'}, 
+							:class => 'action sort') %></th>
+	<th>Restaurant Name</th>
+						    
+	<th>Action</th>
+  </tr>
+
+    <% @reviews.each do |review|%>
+  <tr class="<%= cycle('odd', 'even') %>">
+    	<td class= 'center'><%=review.id %></td>
+    	<td class= 'center'><%=review.score %></td>
+		<td class="center"><textarea cols="40" rows="2"  readonly="readonly"><%=review.rev_summary %></textarea></td>	
+			<td class= 'center'><%=Restaurant.find_by_id(review.restaurant_id).rest_name if 			Restaurant.find_by_id(review.restaurant_id)%></td>
+		<td class="actions">
+			<%=link_to("Show", {:action => 'show', :id => review.id, :restaurant_id => review.restaurant_id}, 
+								:class => 'action show') %> 
+			<%=link_to("Edit", {:action=> 'edit', :id =>review.id, :restaurant_id => review.restaurant_id}, 
+			                    :class => 'action edit') %>
+			<%=link_to("Delete",{:action=> 'delete', :id =>review.id, :restaurant_id => review.restaurant_id}, 
+								 :class => 'action delete') %></td>
+		
+   </tr>
+	<%end%>
+</table>
+</div>

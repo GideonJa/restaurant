@@ -1,0 +1,16 @@
+<%@page_title ="Edit Review  #{@review.id}" %>
+<%= link_to(" << Back to list", {:action => "list"}) %>
+<div class="review edit">
+<h2>Edit Review <%=@review.id %> </h2>
+
+<%= form_for(:review, :url=> {:action => 'update', :id => params[:id]}) do |f| %>
+	<%= render(:partial =>"form", :locals => {:f => f}) %>
+
+	<div class="form-buttons">
+		<%= submit_tag("Update Review") %>
+	</div>
+
+<%end%>
+
+
+</div>
