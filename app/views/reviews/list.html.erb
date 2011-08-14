@@ -1,17 +1,22 @@
 <%@page_title ="Listing Reviews"%>
-<%= link_to("<< Back to Restaurants List", {:controller => "restaurants", :action => 'list'}, :class => 'back-link') %><br />
-
-<%= link_to("<< See reviews for ALL restaurants", {:controller => "reviews", :action => 'listall'}, :class => 'back-link') %>
+<div id="nav">
+<ul>
+	
+	<li><form action="/reviews/search/<%=@curr_restaurant.id%>", method="GET", id="<%=@curr_restaurant.id%>" >
+		Enter search value: <input type="text" name="user_search", id="<%=@curr_restaurant.id%>"/>
+		<input type ="submit" name="commit" value="search reviews">
+		</form></li>
+	<li><%= link_to("Add new Review", {:action=>'new', :restaurant_id => @curr_restaurant.id}, 
+										:class => 'action new') %></li>
+	<li><%= link_to("<< Restaurants List", {:controller => "restaurants", :action => 'list'}, 
+												:class => 'back-link') %></li>
+	<li><%= link_to("<< ALL Reviews", {:controller => "reviews", :action => 'listall'}, 
+														:class => 'back-link') %></li>
+</ul>
+</div>
  
-</div class="review list">
-<h2>Reviews List</h2>
-
-<%= link_to("Add new Review", {:action=>'new', :restaurant_id => @curr_restaurant.id}, :class => 'action new') %>
-
-<form action="/reviews/search/<%=@curr_restaurant.id%>", method="GET", id="<%=@curr_restaurant.id%>"  >
-	Enter search value: <input type="text" name="user_search", id="<%=@curr_restaurant.id%>"  /><br />
-<input type ="submit" name="commit" value="search reviews">
-</form><br />	
+<div class="review list">
+<h2>Reviews List</h2>	
 <div> <%= pluralize(@reviews.size, 'review') %> found for Restaurant <%= @curr_restaurant.rest_name %></div>
 	
 <table class="listing" summary="Review list">
@@ -23,7 +28,7 @@
     <th><%=link_to("Review", {:action => 'sort', :sort_field => 'rev_summary'}, 
 							:class => 'action sort') %></th>
 	<th>Restaurant Name</th>
-	<th>Action</th>
+	<th id="action">Action</th>
   </tr>
 
     <% @reviews.each do |review|%>
@@ -32,7 +37,7 @@
     	<td class= 'center'><%=review.score %></td>
 		<td class="center"><textarea cols="40" rows="2" readonly="readonly"><%=review.rev_summary %></textarea></td>
 			<td class= 'center'><%=Restaurant.find_by_id(review.restaurant_id).rest_name if 			Restaurant.find_by_id(review.restaurant_id)%></td>	
-		<td class="actions">
+		<td>
 			<%=link_to("Show", {:action => 'show', :id => review.id, :restaurant_id => @curr_restaurant.id}, 
 								:class => 'action show') %> 
 			<%=link_to("Edit", {:action=> 'edit', :id =>review.id, :restaurant_id => @curr_restaurant.id}, 

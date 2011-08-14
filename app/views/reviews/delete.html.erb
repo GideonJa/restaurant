@@ -1,5 +1,10 @@
 <%@page_title ="Delete Review #{@review.reviewer_id}"%>
-<%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %>
+<div id="nav">
+<ul>
+<li><%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %></li>
+</ul>
+</div>
+
 <div class="review delete">
 	<h2>Showing Review <%=@review.id%> </h2>
 

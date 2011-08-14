@@ -1,6 +1,11 @@
 <%@page_title ="Show Restaurant"%>
-<%= link_to(" << Back to list", {:action => "list"}) %>
-<div class="restaurant show">
+<div id="nav">
+<ul>
+<li><%= link_to(" << Back to list", {:action => "list"}) %></li>
+</ul>
+</div>
+
+<div class="restaurant list">
 	<h2>Showing Restaurant <%=@restaurant.id%> </h2>
 
 

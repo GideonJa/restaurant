@@ -1,5 +1,11 @@
 <%@page_title ="Edit Restaurant  #{@restaurant.rest_name}" %>
-<%= link_to(" << Back to list", {:action => "list"}) %>
+<div id="nav">
+<ul>
+<li><%= link_to(" << Back to list", {:action => "list"}) %></li>
+</ul>
+</div>
+
+
 <div class="restaurant edit">
 <h2>Edit Restaurant <%=@restaurant.id %> </h2>
 

@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>nyu proj: <%=@page_title || "Gideon's test App"%></title>
   <meta name="author" content="Gideon J">
+ <%= stylesheet_link_tag('gideon', :media => 'all') %>
   <%= csrf_meta_tag %>
 </head>
 
 <body>
-<div id="header">
-   <h1>Restaurants Reviews and Rating</h1>
-</div>
-	
-<div id="main">
-	<% if !flash[:notice].blank?%>
-		<div class="notice">
-		<%= flash[:notice]%>
-		</div>	
-	<%end%>
-	<% if !flash[:error].blank?%>
-		<div class="error">
-		<%= flash[:error]%>
-		</div>	
-	<%end%>
-
-	<div id="content">
-		<%= yield %>
+	<div id="wrapper">
+	<div id="header">
+	   <h1>Restaurants Reviews and Rating</h1>
 	</div>
-</div>
+	
+	<div id="main">
+		<% if !flash[:notice].blank?%>
+			<div class="notice">
+			<%= flash[:notice]%>
+			</div>	
+		<%end%>
+		<% if !flash[:error].blank?%>
+			<div class="error">
+			<%= flash[:error]%>
+			</div>	
+		<%end%>
 
-<div id="footer">
-  <p id="copyright">&copy; Gideon Jadlovker</p>
-</div>
+		<div id="content">
+			<%= yield %>
+		</div>
+
+
+	<div id="footer">
+	  <p id="copyright">&copy; Gideon Jadlovker</p>
+	</div>
+	</div><!-- main -->
+	</div><!-- wrapper -->
 
 </body>
 </html>

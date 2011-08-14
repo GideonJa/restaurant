@@ -1,5 +1,10 @@
 <%@page_title ="Edit Review  #{@review.id}" %>
-<%= link_to(" << Back to list", {:action => "list"}) %>
+<div id="nav">
+<ul>
+<li><%= link_to(" << Back to list", {:action => "list"}) %></li>
+</ul>
+</div>
+
 <div class="review edit">
 <h2>Edit Review <%=@review.id %> </h2>
 

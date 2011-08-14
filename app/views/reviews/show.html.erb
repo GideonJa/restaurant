@@ -1,5 +1,9 @@
 <%@page_title ="Show Review"%>
-<%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %>
+<div id="nav">
+<ul>
+<li><%= link_to(" << Back to list", {:action => "list", :restaurant_id => @curr_restaurant.id}) %></li>
+</ul></div>
+
 <div class="review show">
 	<h2>Showing Review <%=@review.id%> </h2>
 
