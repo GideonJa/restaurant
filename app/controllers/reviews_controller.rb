@@ -16,7 +16,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    puts "========here is param  =========#{params[:review]}" 
     @review = Review.new(params[:review])
     if @review[:score] && @review[:score].integer?
       then if @review.save    
