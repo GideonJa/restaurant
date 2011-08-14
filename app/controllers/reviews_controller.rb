@@ -16,14 +16,21 @@ class ReviewsController < ApplicationController
   end
 
   def create
-      
     @review = Review.new(params[:review])
-    if @review.save
-      flash[:notice] = "New review was added succesfully"
-      update_rest_avg_rating(params[:restaurant_id])
-      redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
+    if @review[:score] && @review[:score].integer?
+      then if @review.save    
+              flash[:notice] = "New review was added succesfully"
+              update_rest_avg_rating(params[:restaurant_id])
+              redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)
+              else
+                flash[:error] = 
+                "Review was not created. Ensure all fields are filled"
+                redirect_to(:action => 'new', :restaurant_id => @review.restaurant_id)
+              end
     else
-      render ("new")
+      flash[:error] = 
+      "Review was not created. Ensure all fields are filled"
+      redirect_to(:action => 'new', :restaurant_id => @review.restaurant_id)
     end
   end
 
@@ -80,13 +87,21 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update_attributes(params[:review])
-       flash[:notice] = "Review #{@review.id} was updates succesfully"
-       update_rest_avg_rating(params[:restaurant_id])
-        redirect_to(:action => 'show', :id => @review.id, :restaurant_id => @review.restaurant_id)
-      else
-         redirect_to(:action => 'edit', :id => @review.id, :restaurant_id => @review.restaurant_id)
-      end
+    
+    if @review[:score] && @review[:score].integer?
+    then if @review.update_attributes(params[:review])
+           then
+           flash[:notice] = "Review #{@review.id} was updates succesfully"
+           update_rest_avg_rating(params[:restaurant_id]) if @review[:score]
+            redirect_to(:action => 'show', :id => @review.id, :restaurant_id => @review.restaurant_id)
+          else
+             redirect_to(:action => 'edit', :id => @review.id, :restaurant_id => @review.restaurant_id)
+          end
+    else
+       flash[:error] = 
+        "Score must be > 0"
+        redirect_to(:action => 'edit', :id => @review.id, :restaurant_id => @review.restaurant_id)
+    end
   end
 
   def delete
@@ -98,7 +113,7 @@ class ReviewsController < ApplicationController
     if params[:commit] == "Delete Review"
       then
        Review.find(params[:id]).destroy
-       update_rest_avg_rating(params[:restaurant_id])
+       update_rest_avg_rating(params[:restaurant_id]) if @review[:score]
        flash[:notice] = "Review deleted successfully"
      end
       redirect_to(:action => 'list', :restaurant_id => @review.restaurant_id)

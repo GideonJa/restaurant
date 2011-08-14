@@ -1,0 +1,73 @@
+* {margin:0; padding:0;}
+.clearfix:after { content:"."; display:block; clear:both; height:0; visibility:hidden; }
+body 		{font-family: Verdana,Tahoma,sans-serif}
+#wrapper	{margin: auto; top: 0px; overflow: hidden;  width: 1020px; }
+#header  	{background-color: #fff}
+#nav  		{background-color: #72ACC1}
+
+.notice 	{ height: 1.25em; padding: 0.5em; 
+  			background: #C5D9E2; color: #4C2516; }
+.error 	{ height: 1.25em; padding: 0.5em; 
+  			background: #C5D9E2; color: red; }
+div.list, div.listall, div.edit, div.show, div.delete,
+div.new 	{background: #87C8E8 url('/images/bg-header.jpg') no-repeat; 
+			width:100%; height:100%; float:left; overflow:auto; min-height:400px;}
+
+
+.list h2, .show h2,.edit h2,.new h2, .delete h2,
+#header h1 	{font-family:"Arial Black", Gadget, sans-serif; 
+			color: #75726F;
+			font-size: 1.4em;
+			padding-top: 10px;
+			padding-bottom: 5px;}
+#nav		{width: 100%; height: 50px; float:right;}
+#nav ul li	{display: inline; float:right;
+			color: #75726F; font-family:"Arial Black", Gadget, sans-serif; 
+			padding: 16px 19px 5px; 
+				font-size: 14px; 
+				text-align: center;
+			}
+#nav ul li a
+			{display: block; 
+			color: #506680; font-family:"Arial Black", Gadget, sans-serif;
+			text-decoration:none;
+			text-align: center;
+			 }
+			
+table.listing
+			{margin: 0 auto;
+			background-color: #DFF3FD; border-collapse:collapse;
+			}
+.list tr th {text-align: left; padding: 0 10px; font-size: 1.3em; color: #506680; 
+			font-family:"Arial Black", Gadget, sans-serif;}
+th#action 	{text-align: center; color: #75726F;}		
+.list tr td {padding: 0 10px; font-size: 0.9em;}			
+.list tr th a,
+.list tr td a
+			{display: inline;
+			color: #506680; font-family:"Arial Black", Gadget, sans-serif;
+			margin-right:5px;
+			text-decoration:none;
+			 }
+ #footer 	{float:left; 
+			background-color: #72ACC1; 
+			width:100%;
+			font-family:"Arial Black", Gadget, sans-serif; 
+			color: #75726F;}
+			
+#footer p {display:block; float:right; margin-right: 15px;}
+
+
+
+
+
+
+
+.odd 		{ background: #C5D9E2; }
+.even 		{ background: none; }
+
+#nav ul li a:hover,
+.list tr th a:hover,
+.list tr td a:hover
+			{text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+			}

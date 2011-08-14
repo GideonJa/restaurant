@@ -1,5 +1,11 @@
 NyuRest::Application.routes.draw do
  
+  get "sessions/show"
+
+  get "sessions/list"
+
+  get "sessions/create"
+
   # resources :restaurants
   #  resources :reviewers
   

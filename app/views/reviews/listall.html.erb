@@ -1,14 +1,19 @@
 <%@page_title ="Listing ALL Reviews"%>
-<%= link_to("<< Back to Restaurants List", {:controller => "restaurants", :action => 'list'}, :class => 'back-link') %>
+<div id="nav">
+<ul>
+	<li><form action="/reviews/search", method="GET">
+		Enter search value: <input type="text" name="user_search">
+			<input type ="submit" name="commit" value="search reviews">
+		</form></li>
+		<li><%= link_to("<< Back to Restaurants List", {:controller => "restaurants", :action => 'list'}, 
+														:class => 'back-link') %></li>
+</ul></div>
  
-</div class="review list">
+<div class="review list">
 <h2>List of ALL Reviews</h2>
 
 
-<form action="/reviews/search", method="GET">
-	Enter search value: <input type="text" name="user_search"><br />
-<input type ="submit" name="commit" value="search reviews">
-</form><br />	
+
 <div> <%= pluralize(@reviews.size, 'review') %> found</div>
 	
 <table class="listing" summary="Review list">
@@ -21,7 +26,7 @@
 							:class => 'action sort') %></th>
 	<th>Restaurant Name</th>
 						    
-	<th>Action</th>
+	<th id="action">Action</th>
   </tr>
 
     <% @reviews.each do |review|%>

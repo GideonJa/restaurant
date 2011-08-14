@@ -25,7 +25,7 @@
 	<th><%=link_to("Avg. rating given", {:action => 'sort', :sort_field => 'rev_avg_rating'}, 
 													:class => 'action sort') %></th>
 
-	<th>Action</th>
+	<th id="action">Action</th>
   </tr>
 
     <% @reviewers.each do |reviewer|%>

@@ -1,21 +1,21 @@
 <%@page_title ="Listing Restaurants"%>
  
-</div class="restaurant list">
-<h2>Restaurants List</h2>
+<div id="nav">
+	<ul>
+	<li><form action="/restaurants/search", method="GET">
+			Enter search value: <input type="text" name="user_search" />
+		<input type ="submit" name"commit" value="search restaurants">
+		</form>	</li>
+		<li><%= link_to("Add new Restaurant", {:action=>'new'}, :class => 'action new') %></li>
+	</ul>
+</div><!-- nav -->
 
-<%= link_to("Add new Restaurant", {:action=>'new'}, :class => 'action new') %>
-
-
-<form action="/restaurants/search", method="GET">
-	Enter search value: <input type="text" name="user_search" /><br />
-<input type ="submit" name"commit" value="search restaurants">
-</form><br />	
-
+<div class="list">
+<h2>Restaurants List</h2>	
 <div> <%= pluralize(@restaurants.size, 'restaurant') %> found </div>
-	
+
 <table class="listing" summary="Restaurant list">
-  <tr class="header">
-   
+  <tr class="header">   
     <th><%=link_to("Restaurant", {:action => 'sort', :sort_field => 'rest_name'}, 
 							:class => 'action sort') %></th>
     <th><%=link_to("city", {:action => 'sort', :sort_field => 'rest_city'}, 
@@ -24,23 +24,18 @@
 													:class => 'action sort') %></th>
 	<th><%=link_to("rating", {:action => 'sort', :sort_field => 'avg_rating'}, 
 													:class => 'action sort') %></th>
-
-	<th>Action</th>
+	<th id="action">Action</th>
   </tr>
 
     <% @restaurants.each do |restaurant|%>
   <tr class="<%= cycle('odd', 'even') %>">
-		
-    
     	<td class= 'center'><%=restaurant.rest_name %></td>
 		<td class="center"><%=restaurant.rest_city %></td>
 		<td class="center"><%=restaurant.cuisine %></td>
-		<td class="center"><%=restaurant.avg_rating %></td>
-		
-		
+		<td class="center"><%=restaurant.avg_rating %></td>	
 		<td class="actions">
-			<%=link_to("Reviews", {:action => 'Reviews', :controller => 'reviews', :action =>'list', :restaurant_id => restaurant.id}, 
-									:class => 'action show') %>
+			<%=link_to("Reviews", {:action => 'Reviews', :controller => 'reviews', :action =>'list',
+				  				:restaurant_id 	=> restaurant.id}, :class => 'action show') %>
 			<%=link_to("Show", {:action => 'show', :id => restaurant.id}, 
 								:class => 'action show') %> 
 			<%=link_to("Edit", {:action=> 'edit', :id =>restaurant.id}, 
