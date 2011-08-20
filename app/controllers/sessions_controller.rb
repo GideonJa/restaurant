@@ -8,16 +8,16 @@ class SessionsController < ApplicationController
         acc_tok = my_app.get_access_token(config['client_secret'])
    
         #Instantiate a new page class using the page_id specified 
-        @page = FbGraph::Page.new(config['page_id'], :access_token => acc_tok).fetch;
+        @page = FbGraph::Page.new(config['page_id'], :access_token => acc_tok).fetch
  
         #Grab the events from the page 
         events = @page.events.sort_by{|e| e.start_time};
       
         #Get the events that are upcoming
-        @upcoming_events = events.find_all{|e| e.start_time >= Time.now};
+        @upcoming_events = events.find_all{|e| e.start_time >= Time.now}
    
         #Get the events that have passed
-         @past_events = events.find_all{|e| e.start_time < Time.now}.reverse;
+         @past_events = events.find_all{|e| e.start_time < Time.now}.reverse
       end
 end
   # 
