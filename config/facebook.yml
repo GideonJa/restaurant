@@ -1,0 +1,13 @@
+#config/facebook.yml
+    development: &DEFAULTS
+    app_id: 112892922144173
+    client_id: 043e1b12b09de653582238998ac63d89
+    client_secret: f3579af91cdc258dcb3521fb328719cc
+    perms: offline_access, manage_pages, user_photos
+    page_id: http://www.facebook.com/events/
+  
+  # test:
+  #      <<: *DEFAULTS
+  # 
+  # production:
+  #     <<: *DEFAULTS
