@@ -1,3 +1,3 @@
-# Ruby on Rails class 
+# Ruby on Rails
 
-This is the final project for the Ruby and Rails class 
+Ruby and Rails exercise
