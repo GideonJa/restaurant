@@ -6,7 +6,7 @@ gem 'rails', '~> 5.1.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'fb_graph'
+gem 'fb_graph2'
 
 
 group :development, :test do
