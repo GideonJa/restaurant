@@ -1,12 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 5.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '1.3.3', :group => :development
+gem 'sqlite3'
 gem 'fb_graph'
+
+
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara', '~> 2.13.0'
+  gem 'selenium-webdriver'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
